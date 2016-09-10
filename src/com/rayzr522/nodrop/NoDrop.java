@@ -123,7 +123,7 @@ public class NoDrop extends JavaPlugin implements Listener {
 	}
 
 	@EventHandler(priority = EventPriority.LOW)
-	public void onDeath(PlayerSwapHandItemsEvent e) {
+	public void onSwapHand(PlayerSwapHandItemsEvent e) {
 		if (!config.PREVENT_OFFHAND) { return; }
 		if (!config.worlds.contains(e.getPlayer().getWorld().getName())) { return; }
 		e.setCancelled(true);
