@@ -5,10 +5,12 @@ import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.rayzr522.nodrop.cmd.CommandNoDrop;
@@ -99,25 +101,32 @@ public class NoDrop extends JavaPlugin implements Listener {
 	}
 
 	// Prevent the various drop methods
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
 	public void onItemDrop(PlayerDropItemEvent e) {
 		if (!config.PREVENT_DROP) { return; }
 		if (!config.worlds.contains(e.getPlayer().getWorld().getName())) { return; }
 		e.setCancelled(true);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
 	public void onInventoryClick(InventoryClickEvent e) {
 		if (!config.PREVENT_CLICK) { return; }
 		if (!config.worlds.contains(e.getWhoClicked().getWorld().getName())) { return; }
 		e.setCancelled(true);
 	}
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.LOW)
 	public void onDeath(PlayerDeathEvent e) {
 		if (!config.PREVENT_DEATH) { return; }
 		if (!config.worlds.contains(e.getEntity().getWorld().getName())) { return; }
 		e.getDrops().clear();
+	}
+
+	@EventHandler(priority = EventPriority.LOW)
+	public void onDeath(PlayerSwapHandItemsEvent e) {
+		if (!config.PREVENT_OFFHAND) { return; }
+		if (!config.worlds.contains(e.getPlayer().getWorld().getName())) { return; }
+		e.setCancelled(true);
 	}
 
 }
