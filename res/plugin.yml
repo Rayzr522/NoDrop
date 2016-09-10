@@ -1,0 +1,8 @@
+name: NoDrop
+main: com.rayzr522.nodrop.NoDrop
+version: 1.0
+description: Configurable plugin to prevent items dropping in specific worlds.
+commands:
+  nodrop:
+    description: "Management command for NoDrop"
+    usage: "/nodrop [reload]"
