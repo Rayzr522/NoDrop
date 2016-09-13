@@ -104,6 +104,7 @@ public class NoDrop extends JavaPlugin implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
 	public void onItemDrop(PlayerDropItemEvent e) {
 		if (!config.PREVENT_DROP) { return; }
+		if (e.getPlayer().hasPermission(config.PERM_EXEMPT)) { return; }
 		if (!config.worlds.contains(e.getPlayer().getWorld().getName())) { return; }
 		e.setCancelled(true);
 	}
@@ -111,6 +112,7 @@ public class NoDrop extends JavaPlugin implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
 	public void onInventoryClick(InventoryClickEvent e) {
 		if (!config.PREVENT_CLICK) { return; }
+		if (e.getWhoClicked().hasPermission(config.PERM_EXEMPT)) { return; }
 		if (!config.worlds.contains(e.getWhoClicked().getWorld().getName())) { return; }
 		e.setCancelled(true);
 	}
@@ -118,6 +120,7 @@ public class NoDrop extends JavaPlugin implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
 	public void onDeath(PlayerDeathEvent e) {
 		if (!config.PREVENT_DEATH) { return; }
+		if (e.getEntity().hasPermission(config.PERM_EXEMPT)) { return; }
 		if (!config.worlds.contains(e.getEntity().getWorld().getName())) { return; }
 		e.getDrops().clear();
 	}
@@ -125,6 +128,7 @@ public class NoDrop extends JavaPlugin implements Listener {
 	@EventHandler(priority = EventPriority.LOW)
 	public void onSwapHand(PlayerSwapHandItemsEvent e) {
 		if (!config.PREVENT_OFFHAND) { return; }
+		if (e.getPlayer().hasPermission(config.PERM_EXEMPT)) { return; }
 		if (!config.worlds.contains(e.getPlayer().getWorld().getName())) { return; }
 		e.setCancelled(true);
 	}

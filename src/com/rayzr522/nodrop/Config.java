@@ -11,6 +11,7 @@ public class Config extends Configuration {
 	public boolean		PREVENT_DROP	= true;
 	public boolean		PREVENT_DEATH	= false;
 	public boolean		PREVENT_OFFHAND	= true;
-	public String		PERM_MANAGE		= "NoDrop.manage";;
+	public String		PERM_MANAGE		= "NoDrop.manage";
+	public String		PERM_EXEMPT		= "NoDrop.exempt";
 
 }
