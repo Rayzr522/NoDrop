@@ -12,49 +12,49 @@ import com.rayzr522.nodrop.NoDrop;
 
 public class CommandNoDrop implements CommandExecutor {
 
-	private NoDrop plugin;
+    private NoDrop plugin;
 
-	public CommandNoDrop(NoDrop plugin) {
+    public CommandNoDrop(NoDrop plugin) {
 
-		this.plugin = plugin;
+        this.plugin = plugin;
 
-	}
+    }
 
-	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-		Config config = plugin.config();
+        Config config = plugin.config();
 
-		if (!sender.hasPermission(config.PERM_MANAGE)) {
+        if (!sender.hasPermission(config.PERM_MANAGE)) {
 
-			Msg.send(sender, "no-permission");
-			return true;
+            Msg.send(sender, "no-permission");
+            return true;
 
-		}
+        }
 
-		if (args.length < 1) {
+        if (args.length < 1) {
 
-			PluginDescriptionFile pdf = plugin.getDescription();
-			Msg.send(sender, "version-info", pdf.getName(), pdf.getVersion());
-			return true;
+            PluginDescriptionFile pdf = plugin.getDescription();
+            Msg.send(sender, "version-info", pdf.getName(), pdf.getVersion());
+            return true;
 
-		}
+        }
 
-		String cmd = args[0].toLowerCase();
+        String cmd = args[0].toLowerCase();
 
-		if (cmd.equals("reload")) {
+        if (cmd.equals("reload")) {
 
-			plugin.reloadConfig();
-			plugin.load();
-			Msg.send(sender, "config-reloaded");
+            plugin.reloadConfig();
+            plugin.load();
+            Msg.send(sender, "config-reloaded");
 
-		} else {
+        } else {
 
-			Msg.send(sender, "usage.nodrop");
+            Msg.send(sender, "usage.nodrop");
 
-		}
+        }
 
-		return true;
+        return true;
 
-	}
+    }
 
 }
